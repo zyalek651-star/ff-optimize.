@@ -18,18 +18,17 @@ android {
     }
 
     signingConfigs {
-        create("release") {
-            val props = java.util.Properties().apply {
-                val f = rootProject.file("keystore.properties")
-                if (f.exists()) f.inputStream().use { load(it) }
-            }
-            storeFile = props.getProperty("storeFile")?.let { file(it) }
-            storePassword = props.getProperty("storePassword")
-            keyAlias = props.getProperty("keyAlias")
-            keyPassword = props.getProperty("keyPassword")
+    create("release") {
+        val props = Properties().apply {
+            val f = rootProject.file("keystore.properties")
+            if (f.exists()) f.inputStream().use { load(it) }
         }
+        storeFile = props.getProperty("storeFile")?.let { file(it) }
+        storePassword = props.getProperty("storePassword")
+        keyAlias = props.getProperty("keyAlias")
+        keyPassword = props.getProperty("keyPassword")
     }
-
+}
     buildTypes {
         release {
             isMinifyEnabled = true
