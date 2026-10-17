@@ -1,39 +1,49 @@
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+name: Build APK
 
-  - name: Set up JDK 17
-    uses: actions/setup-java@v4
-    with:
-      distribution: temurin
-      java-version: '17'
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
-  - name: Setup Android SDK
-    uses: android-actions/setup-android@v3
-    with:
-      packages: ''
-      accept-android-sdk-licenses: true
-      log-accepted-android-sdk-licenses: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Accept licenses explicitly
-    run: yes | sdkmanager --licenses || true
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
 
-  - name: Grant execute permission for gradlew
-    run: chmod +x ./gradlew || true
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+          accept-android-sdk-licenses: true
+          log-accepted-android-sdk-licenses: false
 
-  - name: Generate gradle wrapper if absent
-    run: |
-      if [ ! -f ./gradlew ]; then
-        gradle wrapper --gradle-version 8.2
-        chmod +x ./gradlew
-      fi
+      - name: Accept licenses explicitly
+        run: yes | sdkmanager --licenses || true
 
-  - name: Build debug APK
-    run: ./gradlew :app:assembleDebug --stacktrace
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew || true
 
-  - name: Upload APK artifact
-    uses: actions/upload-artifact@v4
-    with:
-      name: app-debug
-      path: app/build/outputs/apk/debug/app-debug.apk
-      if-no-files-found: error
+      - name: Generate gradle wrapper if absent
+        run: |
+          if [ ! -f ./gradlew ]; then
+            gradle wrapper --gradle-version 8.2
+            chmod +x ./gradlew
+          fi
+
+      - name: Build debug APK
+        run: ./gradlew :app:assembleDebug --stacktrace
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
