@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FF Optimize</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_profile">Profile</string>
+    <string name="tab_tweak">Tweaks</string>
+    <string name="tab_history">History</string>
+    <string name="btn_apply">Apply Profile</string>
+    <string name="btn_revert">Revert</string>
+    <string name="shell_status">Shell: %1$s</string>
+    <string name="device_card_title">Device</string>
+    <string name="profile_recommended">Recommended Profile</string>
+</resources>
