@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "tweaks": [
+    {
+      "id": "gfx_low",
+      "name": "Graphics Low",
+      "description": "Set Free Fire gfx ke low via shared_prefs override.",
+      "requiresRoot": false,
+      "requiresShizuku": true,
+      "commands": [
+        "settings put global ff_gfx_level 0"
+      ],
+      "revert": [
+        "settings put global ff_gfx_level 2"
+      ]
+    },
+    {
+      "id": "gfx_balanced",
+      "name": "Graphics Balanced",
+      "description": "Set gfx level balanced.",
+      "requiresRoot": false,
+      "requiresShizuku": true,
+      "commands": [
+        "settings put global ff_gfx_level 1"
+      ],
+      "revert": [
+        "settings put global ff_gfx_level 2"
+      ]
+    },
+    {
+      "id": "gfx_smooth",
+      "name": "Graphics Smooth",
+      "description": "Set gfx level smooth (60fps cap).",
+      "requiresRoot": false,
+      "requiresShizuku": true,
+      "commands": [
+        "settings put global ff_gfx_level 2"
+      ],
+      "revert": [
+        "settings put global ff_gfx_level 1"
+      ]
+    },
+    {
+      "id": "cpu_governor_perf",
+      "name": "CPU Governor Performance",
+      "description": "Set governor ke performance pada semua core.",
+      "requiresRoot": true,
+      "requiresShizuku": false,
+      "commands": [
+        "for c in /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_governor; do echo performance > $c; done"
+      ],
+      "revert": [
+        "for c in /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_governor; do echo schedutil > $c; done"
+      ]
+    },
+    {
+      "id": "kill_bg_apps",
+      "name": "Kill Background Apps",
+      "description": "Bersihkan proses background non-system.",
+      "requiresRoot": false,
+      "requiresShizuku": true,
+      "commands": [
+        "am kill-all"
+      ],
+      "revert": []
+    },
+    {
+      "id": "disable_anim",
+      "name": "Disable Animations",
+      "description": "Matikan animasi sistem untuk respons lebih cepat.",
+      "requiresRoot": false,
+      "requiresShizuku": true,
+      "commands": [
+        "settings put global window_animation_scale 0",
+        "settings put global transition_animation_scale 0",
+        "settings put global animator_duration_scale 0"
+      ],
+      "revert": [
+        "settings put global window_animation_scale 1",
+        "settings put global transition_animation_scale 1",
+        "settings put global animator_duration_scale 1"
+      ]
+    },
+    {
+      "id": "force_gpu_rendering",
+      "name": "Force GPU Rendering",
+      "description": "Paksa GPU rendering untuk 2D.",
+      "requiresRoot": false,
+      "requiresShizuku": true,
+      "commands": [
+        "settings put global force_gpu_rendering 1"
+      ],
+      "revert": [
+        "settings put global force_gpu_rendering 0"
+      ]
+    },
+    {
+      "id": "boost_touch",
+      "name": "Touch Response Boost",
+      "description": "Naikkan touch sampling scale.",
+      "requiresRoot": false,
+      "requiresShizuku": true,
+      "commands": [
+        "settings put system touch_sampling_scale 2"
+      ],
+      "revert": [
+        "settings put system touch_sampling_scale 1"
+      ]
+    }
+  ]
+}
