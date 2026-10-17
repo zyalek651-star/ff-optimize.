@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "id": "low",
+      "name": "Low-End",
+      "minRamGb": 2,
+      "maxRamGb": 4,
+      "minCores": 4,
+      "socTiers": ["entry"],
+      "tweaks": ["gfx_low", "cpu_governor_perf", "kill_bg_apps", "disable_anim"],
+      "expectedFpsDelta": 8
+    },
+    {
+      "id": "mid",
+      "name": "Mid-Range",
+      "minRamGb": 4,
+      "maxRamGb": 8,
+      "minCores": 6,
+      "socTiers": ["mid"],
+      "tweaks": ["gfx_balanced", "cpu_governor_perf", "force_gpu_rendering", "disable_anim"],
+      "expectedFpsDelta": 5
+    },
+    {
+      "id": "high",
+      "name": "High-End",
+      "minRamGb": 8,
+      "maxRamGb": 16,
+      "minCores": 8,
+      "socTiers": ["flagship"],
+      "tweaks": ["gfx_smooth", "cpu_governor_perf", "force_gpu_rendering", "boost_touch"],
+      "expectedFpsDelta": 3
+    }
+  ]
+}
