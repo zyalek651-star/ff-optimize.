@@ -1,0 +1,6 @@
+-keep class rikka.shizuku.** { *; }
+-keep class com.topjohnwu.superuser.** { *; }
+-keepclassmembers class com.cancer666.ffoptimize.data.HistoryEntry { *; }
+-keep class * extends androidx.room.RoomDatabase
+-dontwarn rikka.shizuku.**
+-dontwarn com.topjohnwu.superuser.**
